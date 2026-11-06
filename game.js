@@ -198,18 +198,18 @@ const doors = [
 
   function drawBackground() {
   // Светло-коричневые стены
-  const wall = ctx.createLinearGradient(0, 0, 0, 400);
+  const wall = ctx.createLinearGradient(0, 0, 0, 470);
   wall.addColorStop(0, "#c8ad8d");
   wall.addColorStop(1, "#a98d70");
 
   ctx.fillStyle = wall;
-  ctx.fillRect(0, 0, 900, 400);
+  ctx.fillRect(0, 0, 900, 470);
 
   // Каменная кладка
   ctx.strokeStyle = "rgba(85, 63, 43, 0.13)";
   ctx.lineWidth = 2;
 
-  for (let y = 30; y < 400; y += 48) {
+  for (let y = 30; y < 470; y += 48) {
     ctx.beginPath();
     ctx.moveTo(0, y);
     ctx.lineTo(900, y);
@@ -223,33 +223,33 @@ const doors = [
     }
   }
 
-  // Серый каменный пол
-  const floor = ctx.createLinearGradient(0, 390, 0, 600);
+  // Серый каменный пол — уменьшенная высота
+  const floor = ctx.createLinearGradient(0, 470, 0, 600);
   floor.addColorStop(0, "#858584");
   floor.addColorStop(1, "#55585a");
 
   ctx.fillStyle = floor;
-  ctx.fillRect(0, 390, 900, 210);
+  ctx.fillRect(0, 470, 900, 130);
 
   // Плиточные швы
   ctx.strokeStyle = "rgba(35, 37, 39, 0.35)";
   ctx.lineWidth = 2;
 
-  for (let y = 405; y < 600; y += 38) {
+  for (let y = 480; y < 600; y += 30) {
     ctx.beginPath();
     ctx.moveTo(0, y);
     ctx.lineTo(900, y);
     ctx.stroke();
-  };
+  }
 
   for (let x = 50; x < 900; x += 110) {
     ctx.beginPath();
-    ctx.moveTo(x, 390);
+    ctx.moveTo(x, 470);
     ctx.lineTo(x, 600);
     ctx.stroke();
-  };
+  }
 
-  // Ряд окон в центральной части стены
+  // Ряд окон
   drawWindow(260, 25);
   drawWindow(450, 25);
   drawWindow(640, 25);
@@ -447,7 +447,7 @@ function drawPlant(x, y) {
   // Основание колонны
   ctx.fillStyle = "#8b765f";
   ctx.fillRect(x - 19, 95, 38, 12);
-  ctx.fillRect(x - 19, 390, 38, 12);
+  ctx.fillRect(x - 19, 470, 38, 12);
 
   // Ствол колонны
   const column = ctx.createLinearGradient(x - 12, 0, x + 12, 0);
@@ -456,7 +456,7 @@ function drawPlant(x, y) {
   column.addColorStop(1, "#806b58");
 
   ctx.fillStyle = column;
-  ctx.fillRect(x - 12, 107, 24, 283);
+  ctx.fillRect(x - 12, 107, 24, 363);
 
   // Зеркало
   ctx.fillStyle = "#765b45";
@@ -498,7 +498,7 @@ doors.forEach(door => {
     ctx.fillText(
       "Выбери дверь, за которой начинается твоя история",
       450,
-      375
+      445
     );
 
     drawPlayer();
@@ -1547,36 +1547,35 @@ if (state.scene === "hall") {
     state.keys.clear();
   });
 
-  // ========================================
+ // ========================================
 // МОБИЛЬНОЕ УПРАВЛЕНИЕ
 // ========================================
 
-// Удержание кнопок движения
-document.querySelectorAll(".control-button").forEach(button => {
+const activePointers = new Map();
 
+document.querySelectorAll(".control-button").forEach(button => {
   const key = button.dataset.key;
 
   button.addEventListener("pointerdown", event => {
     event.preventDefault();
 
-    button.setPointerCapture(event.pointerId);
     state.keys.add(key);
+    activePointers.set(event.pointerId, key);
   });
-
-  function releaseKey(event) {
-    event.preventDefault();
-    state.keys.delete(key);
-  }
-
-  button.addEventListener("pointerup", releaseKey);
-  button.addEventListener("pointercancel", releaseKey);
-  button.addEventListener("lostpointercapture", () => {
-    state.keys.delete(key);
-  });
-
 });
 
-// Кнопка взаимодействия
+function releasePointer(event) {
+  const key = activePointers.get(event.pointerId);
+
+  if (key) {
+    state.keys.delete(key);
+    activePointers.delete(event.pointerId);
+  }
+}
+
+window.addEventListener("pointerup", releasePointer);
+window.addEventListener("pointercancel", releasePointer);
+
 const mobileInteract = $("mobileInteract");
 
 if (mobileInteract) {
@@ -1585,7 +1584,6 @@ if (mobileInteract) {
     interact();
   });
 }
-
   // ========================================
   // 14. КНОПКИ И ЗАПУСК
   // ========================================
