@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тайны ИФИЯМ ИГУ</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+</head>
+
+<body>
+  <main class="app">
+
+    <header class="topbar">
+      <div>
+        <h1>✦ Тайны ИФИЯМ ИГУ</h1>
+        <p>Приключение начинается за дверью</p>
+      </div>
+      <div class="location" id="location">Главный холл</div>
+    </header>
+
+<section class="game-shell">
+
+  <button id="back-to-hall" class="back-button" hidden>
+    ← В главный холл
+  </button>
+
+  <canvas id="game" width="900" height="600"></canvas>
+
+      <div class="hud">
+        <div>
+          <small>ТВОЙ ФАКУЛЬТЕТ</small>
+          <strong id="route">Пока не выбран</strong>
+        </div>
+        <div>
+          <small>ИСПЫТАНИЯ</small>
+          <strong id="progress">0 / 3</strong>
+        </div>
+      </div>
+
+      <div id="hint" class="hint" hidden>
+        Нажми пробел, чтобы взаимодействовать
+      </div>
+
+      <!-- Приветственный экран -->
+      <div id="welcome" class="overlay">
+        <div class="welcome-card">
+          <div class="crest">✦</div>
+          <p class="eyebrow">ДОБРО ПОЖАЛОВАТЬ</p>
+          <h2>Университет ждёт<br>своего студента</h2>
+          <p>
+            Исследуй холл, выбери факультет
+            и пройди испытания. За каждой дверью
+            тебя ждёт новая загадка.
+          </p>
+          <button id="startButton">Войти в университет</button>
+          <small>WASD или стрелки — движение · E — взаимодействие</small>
+        </div>
+      </div>
+
+      <!-- Окно задания -->
+      <div id="questionWindow" class="overlay" hidden>
+        <div class="question-card">
+          <div class="question-header">
+            <span id="questionFaculty">ИСПЫТАНИЕ</span>
+            <button id="closeQuestion" class="close-button">×</button>
+          </div>
+
+          <h2 id="questionTitle">Задание</h2>
+          <p id="questionText"></p>
+
+          <div id="answers" class="answers"></div>
+
+          <p id="feedback" class="feedback"></p>
+        </div>
+      </div>
+
+      <!-- Экран завершения -->
+<div id="finishWindow" class="finish-overlay" hidden>
+  <div class="finish-card">
+
+    <div class="finish-topline">
+      ТАЙНЫ ИФИЯМ ИГУ
+    </div>
+
+    <div class="finish-emblem">
+      <img src="philology-emblem.png" alt="Эмблема ИФИЯМ ИГУ">
+    </div>
+
+    <div class="finish-label">ФИНАЛЬНАЯ ГЛАВА</div>
+
+    <h1 class="finish-title">МАРШРУТ ПРОЙДЕН!</h1>
+
+    <div class="finish-divider">
+      <span>✦</span>
+    </div>
+
+    <h2 class="finish-subtitle">Двери открыты!</h2>
+
+    <p class="finish-intro">
+      Поздравляем! Ты успешно прошёл(ла) маршрут
+      <strong>«Теоретическая и прикладная филология».</strong>
+    </p>
+
+    <div class="finish-message">
+      <p class="finish-question">А что дальше?</p>
+
+      <p>
+        Возможно, это только начало твоего путешествия —
+        теперь уже в мире филологии, языков, текстов
+        и новых открытий.
+      </p>
+    </div>
+
+    <div class="finish-contacts">
+      <p class="finish-contacts-title">Узнай больше о поступлении</p>
+
+      <a
+        class="finish-site"
+        href="http://slovo.abiturient.tilda.ws/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Приёмная кампания · Теоретическая и прикладная филология
+        <span>↗</span>
+      </a>
+
+      <div class="finish-contact-row">
+        <span class="contact-icon">✉</span>
+        <a href="mailto:Elladaisu@mail.ru">Elladaisu@mail.ru</a>
+      </div>
+
+      <div class="finish-contact-row">
+        <span class="contact-icon">☎</span>
+        <span>8 (983) 414-55-01 · +7 914 920 12 06</span>
+      </div>
+
+      <p class="finish-messengers">
+        WhatsApp · Telegram · Viber
+      </p>
+    </div>
+
+    <div class="finish-bottom">
+  <div class="finish-bottom-line"></div>
+
+  <p class="finish-final">
+    Университет приготовил для тебя<br>
+    ещё много открытий!
+  </p>
+
+  <p class="finish-goodbye">До встречи в ИФИЯМ ИГУ!</p>
+
+  <button id="returnButton" class="finish-return">
+    Вернуться в главный холл
+  </button>
+</div>
+
+  </div>
+</div>
+
+    </section>
+
+    <footer>
+      <span>✦ Исследуй язык, тексты и мир</span>
+      <span>Учебное приключение · 3 факультета</span>
+    </footer>
+
+  </main>
+</body>
+</html>
