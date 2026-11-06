@@ -1548,6 +1548,45 @@ if (state.scene === "hall") {
   });
 
   // ========================================
+// МОБИЛЬНОЕ УПРАВЛЕНИЕ
+// ========================================
+
+// Удержание кнопок движения
+document.querySelectorAll(".control-button").forEach(button => {
+
+  const key = button.dataset.key;
+
+  button.addEventListener("pointerdown", event => {
+    event.preventDefault();
+
+    button.setPointerCapture(event.pointerId);
+    state.keys.add(key);
+  });
+
+  function releaseKey(event) {
+    event.preventDefault();
+    state.keys.delete(key);
+  }
+
+  button.addEventListener("pointerup", releaseKey);
+  button.addEventListener("pointercancel", releaseKey);
+  button.addEventListener("lostpointercapture", () => {
+    state.keys.delete(key);
+  });
+
+});
+
+// Кнопка взаимодействия
+const mobileInteract = $("mobileInteract");
+
+if (mobileInteract) {
+  mobileInteract.addEventListener("pointerdown", event => {
+    event.preventDefault();
+    interact();
+  });
+}
+
+  // ========================================
   // 14. КНОПКИ И ЗАПУСК
   // ========================================
 

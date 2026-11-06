@@ -865,3 +865,103 @@ footer {
     font-size: 11px;
   }
 }
+
+/* =================================
+   МОБИЛЬНОЕ УПРАВЛЕНИЕ
+================================= */
+
+.mobile-controls {
+  display: none;
+}
+
+.game-shell {
+  position: relative;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+
+  .mobile-controls {
+    display: flex;
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 20px;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 20;
+    pointer-events: none;
+  }
+
+  .direction-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 48px);
+    grid-template-rows: repeat(2, 48px);
+    gap: 5px;
+    pointer-events: auto;
+  }
+
+  .control-button {
+    border: 1px solid #d7b775;
+    border-radius: 10px;
+    background: rgba(77, 30, 43, 0.9);
+    color: #f5e5c4;
+    font-size: 22px;
+    font-weight: bold;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .control-button:active {
+    background: #a45b65;
+  }
+
+  .up {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .left {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .down {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .right {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .interact-button {
+    width: 75px;
+    height: 75px;
+    border: 2px solid #d7b775;
+    border-radius: 50%;
+    background: rgba(100, 28, 50, 0.95);
+    color: #f5e5c4;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: auto;
+  }
+
+  .interact-button span {
+    font-size: 10px;
+    font-weight: normal;
+  }
+
+  .interact-button:active {
+    background: #a45b65;
+  }
+
+}
