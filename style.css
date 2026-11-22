@@ -1131,3 +1131,33 @@ body:not(.in-hall) .topbar .location {
     display: none !important;
   }
 }
+
+@media (max-width: 768px), (pointer: coarse) {
+  .hud {
+    position: absolute;
+    top: auto;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 10;
+  }
+
+  .hud > div {
+    background: rgba(255, 248, 235, 0.92);
+    padding: 8px 12px;
+    border-radius: 10px;
+  }
+
+  .hud small {
+    display: block;
+    font-size: 9px;
+  }
+
+  .hud strong {
+    font-size: 13px;
+  }
+}
