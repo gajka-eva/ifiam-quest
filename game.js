@@ -3271,15 +3271,15 @@ if (
     if (state.nearby) {
       if (state.nearby.type === "facultyDoor") {
         ui.hint.textContent =
-          "Нажми E, чтобы войти на факультет";
+          "Нажми пробел, чтобы войти на факультет";
 
       } else if (state.nearby.type === "desk") {
         ui.hint.textContent =
-          "Нажми E, чтобы получить задание";
+          "Нажми пробел, чтобы получить задание";
 
       } else {
         ui.hint.textContent =
-          "Нажми E, чтобы пройти в следующую комнату";
+          "Нажми пробел, чтобы пройти в следующую комнату";
       }
     }
 
@@ -3368,43 +3368,79 @@ if (
     state.keys.clear();
   });
 
- // ========================================
-// МОБИЛЬНОЕ УПРАВЛЕНИЕ
+// ========================================
+// МОБИЛЬНОЕ УПРАВЛЕНИЕ: КАСАНИЕ ОБЪЕКТОВ
 // ========================================
 
-const activePointers = new Map();
+function handleMobileTap(event) {
+  // Только устройства с сенсорным управлением
+  if (!window.matchMedia("(pointer: coarse)").matches) {
+    return;
+  }
 
-document.querySelectorAll(".control-button").forEach(button => {
-  const key = button.dataset.key;
+  if (
+    !state.started ||
+    state.questionOpen ||
+    state.transitioning ||
+    !ui.finishWindow.hidden
+  ) {
+    return;
+  }
 
-  button.addEventListener("pointerdown", event => {
-    event.preventDefault();
+  // Получаем координаты касания в системе SVG
+  const point = svg.createSVGPoint();
+  point.x = event.clientX;
+  point.y = event.clientY;
 
-    state.keys.add(key);
-    activePointers.set(event.pointerId, key);
-  });
-});
+  const svgPoint = point.matrixTransform(
+    svg.getScreenCTM().inverse()
+  );
 
-function releasePointer(event) {
-  const key = activePointers.get(event.pointerId);
+  const x = svgPoint.x;
+  const y = svgPoint.y;
 
-  if (key) {
-    state.keys.delete(key);
-    activePointers.delete(event.pointerId);
+  // ХОЛЛ: касание двери факультета
+  if (state.scene === "hall") {
+    const door = doors.find(d =>
+      x >= d.x &&
+      x <= d.x + d.width &&
+      y >= d.y &&
+      y <= d.y + d.height
+    );
+
+    if (door) {
+      enterFaculty(door.id);
+    }
+
+    return;
+  }
+
+  // АУДИТОРИЯ: касание стола с заданием
+  if (state.scene === "classroom") {
+
+    if (
+      !state.answered &&
+      Math.hypot(x - 450, y - 400) < 110
+    ) {
+      openQuestion();
+      return;
+    }
+
+    // Касание двери выхода
+    if (
+      state.answered &&
+      x >= 720 &&
+      x <= 800 &&
+      y >= 260 &&
+      y <= 395
+    ) {
+      goNextRoom();
+    }
   }
 }
 
-window.addEventListener("pointerup", releasePointer);
-window.addEventListener("pointercancel", releasePointer);
+svg.addEventListener("pointerup", handleMobileTap);
 
-const mobileInteract = $("mobileInteract");
-
-if (mobileInteract) {
-  mobileInteract.addEventListener("pointerdown", event => {
-    event.preventDefault();
-    interact();
-  });
-}
   // ========================================
   // 14. КНОПКИ И ЗАПУСК
   // ========================================

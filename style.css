@@ -1125,3 +1125,9 @@ body.transitioning {
 body:not(.in-hall) .topbar .location {
   display: none !important;
 }
+
+@media (max-width: 768px), (pointer: coarse) {
+  .mobile-controls {
+    display: none !important;
+  }
+}
