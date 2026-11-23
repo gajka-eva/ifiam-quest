@@ -97,23 +97,31 @@
 
   const $ = id => document.getElementById(id);
 
-  const ui = {
-    location: $("location"),
-    route: $("route"),
-    progress: $("progress"),
-    hint: $("hint"),
-    welcome: $("welcome"),
-    questionWindow: $("questionWindow"),
-    questionFaculty: $("questionFaculty"),
-    questionTitle: $("questionTitle"),
-    questionText: $("questionText"),
-    answers: $("answers"),
-    feedback: $("feedback"),
-    finishWindow: $("finishWindow"),
-    finishText: $("finishText"),
-    backButton: document.getElementById("back-to-hall")
-  };
+const ui = {
+  location: $("location"),
+  route: $("route"),
+  progress: $("progress"),
+  hint: $("hint"),
+  welcome: $("welcome"),
+  questionWindow: $("questionWindow"),
+  questionFaculty: $("questionFaculty"),
+  questionTitle: $("questionTitle"),
+  questionText: $("questionText"),
+  answers: $("answers"),
+  feedback: $("feedback"),
+  finishWindow: $("finishWindow"),
+  returnButton: $("returnButton")   // ← было back-to-hall
+};
 
+ui.returnButton.addEventListener("click", () => {
+  ui.finishWindow.hidden = true;
+  state.faculty = null;
+  state.challenge = 0;
+  state.answered = false;
+  state.scene = "hall";
+  drawHall();
+  updateInterface();
+});
   // ========================================
   // 1. ДАННЫЕ ФАКУЛЬТЕТОВ И ИСПЫТАНИЙ
   // ========================================
@@ -354,6 +362,66 @@ const doors = [
   { id: "journalism", x: 367, y: 205, width: 165, height: 125 },
   { id: "languages", x: 634, y: 205, width: 165, height: 125 }
 ];
+
+// ----------------------------------------
+// ЗАВЕРШЕНИЕ ЗАДАНИЯ И ПЕРЕХОД ДАЛЬШЕ
+// ----------------------------------------
+
+function completeTask(message) {
+  if (state.answered) return;
+  state.answered = true;
+
+  ui.feedback.textContent =
+    "Верно! " + (message || "Испытание пройдено.");
+
+  const faculty = faculties[state.faculty];
+  const isLastTask = state.challenge >= faculty.tasks.length - 1;
+
+  const nextButton = document.createElement("button");
+  nextButton.className = "answer-button correct";
+  nextButton.textContent = isLastTask ? "Завершить →" : "Продолжить →";
+
+  nextButton.addEventListener("click", () => {
+    ui.questionWindow.hidden = true;
+    state.questionOpen = false;
+
+    if (isLastTask) {
+      finishFaculty();
+    } else {
+      state.challenge++;
+      state.answered = false;
+      drawCurrentRoom();   // ← должна быть у тебя в блоке рисования комнат
+      updateInterface();   // ← тоже должна быть
+    }
+  });
+
+  ui.answers.appendChild(nextButton);
+}
+
+function finishFaculty() {
+  const faculty = faculties[state.faculty];
+
+  // Меняем название факультета в готовом тексте
+  const intro = ui.finishWindow.querySelector(".finish-intro");
+  if (intro) {
+    intro.innerHTML = `
+      Поздравляем! Ты успешно прошёл(ла) маршрут
+      <strong>«${faculty.short}».</strong>
+    `;
+  }
+
+  // Меняем ссылку и подпись под направление, если нужно
+  const site = ui.finishWindow.querySelector(".finish-site");
+  if (site) {
+    site.setAttribute("href", faculty.admissionUrl || "http://isu.ru/Abitur/pk2026/main/");
+    site.innerHTML = `
+      Приёмная кампания · ${faculty.short}
+      <span>↗</span>
+    `;
+  }
+
+  ui.finishWindow.hidden = false;
+}
 
   // ========================================
   // 3. РИСОВАНИЕ ИНТЕРЬЕРА
