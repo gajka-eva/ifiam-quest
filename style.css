@@ -1131,3 +1131,48 @@ body:not(.in-hall) .topbar .location {
     display: none !important;
   }
 }
+
+.match-task {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.match-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.match-item {
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.match-item:hover {
+  background: #f0f0f0;
+}
+
+.match-item.selected {
+  border-color: #b28a62;
+  background: #fdf3e7;
+}
+
+.match-item.matched {
+  border-color: #4caf50;
+  background: #e8f5e9;
+  cursor: default;
+  opacity: 0.8;
+}
+
+.match-item.wrong {
+  border-color: #e53935;
+  background: #ffebee;
+}

@@ -178,38 +178,50 @@
       ],
 
       tasks: [
-        {
-          type: "choice",
-          title: "Факт или мнение?",
-          question: "Какое из утверждений можно проверить как факт?",
-          options: [
-            "Библиотека открылась в 10:00",
-            "Это самая красивая библиотека города",
-            "Открытие библиотеки стало великолепным событием"
-          ],
-          correct: 0,
-          explanation: "Время открытия можно проверить по расписанию или официальному сообщению."
-        },
-        {
-          type: "textInput",
-          title: "Мастерская заголовков",
-          question: "Придумай нейтральный заголовок к новости: «В городе открыли новый музей истории». Введи краткий заголовок, содержащий слова «открылся» и «музей».",
-          answer: ["открылсяновыймузей", "вгородеоткрылсяновыймузей"],
-          explanation: "Нейтральный заголовок сообщает о событии без эмоциональных оценок и преувеличений."
-        },
-        {
-          type: "editText",
-          title: "Работа корректора",
-          question: "В короткой новости допущена грамматическая ошибка. Исправь одно слово:\n\n«Вчера в университете прошло интересная встреча».\n\nКакое слово нужно заменить и на какое?",
-          answer: [
-            "прошла",
-            "встреча прошла",
-            "прошла интересная встреча"
-          ],
-          explanation: "Подлежащее «встреча» женского рода, поэтому правильно: «прошла интересная встреча»."
-        }
-      ]
-    },
+  {
+    type: "choice",
+    title: "Девиз журнала",
+    question: "У этого российского журнала 18 века был девиз: «Они работают, а вы их труд ядите».",
+    options: [
+      "Северная пчела",
+      "Всякая всячина",
+      "Заволжский муравей",
+      "Трутень"
+    ],
+    correct: 3,
+    explanation: "Правильный ответ — «Трутень». Этот сатирический журнал Н. И. Новикова выходил в 1769–1770 гг. и имел девиз «Они работают, а вы их труд ядите»."
+  },
+  
+  {
+  type: "textInput",
+  title: "Впиши нужное слово",
+  question: "Впиши нужные слова в правильной форме через пробел:\n\n«(Интервью, интервью) – разновидность разговора, беседы между двумя и более людьми, при которой журналист задает (вопросы, вопрос) своему собеседнику и получает от него (ответы, ответ)».\n\nВведи три слова по порядку пропусков через пробел.",
+  answer: [
+    "интервью вопросы ответы",
+    "интервью вопрос ответ"
+  ],
+  explanation: "Правильно: «Интервью — разновидность разговора, беседы между двумя и более людьми, при которой журналист задает вопросы своему собеседнику и получает от него ответы»."
+},
+
+  {
+    type: "wordSearch",
+    title: "Тайна журналистского квадрата",
+    question: "Найди шесть спрятанных слов. Слова могут располагаться по горизонтали, вертикали и диагонали. Сначала нажми на первую букву слова, затем на последнюю.",
+    words: ["РЕПОРТАЖ", "РЕЦЕНЗИЯ", "СТАТЬЯ", "ОЧЕРК", "ЛОНГРИД"],
+    grid: [
+      ["Р", "С", "Т", "А", "Т", "Ь", "Я", "Ф"],
+      ["Е", "Е", "Н", "Н", "З", "И", "Р", "Е"],
+      ["Ц", "И", "П", "Т", "Е", "Р", "И", "Л"],
+      ["Е", "С", "Л", "О", "Н", "Г", "Р", "К"],
+      ["Н", "О", "В", "К", "Р", "Р", "О", "Е"],
+      ["З", "И", "Я", "Р", "Е", "Т", "В", "Т"],
+      ["И", "М", "К", "О", "М", "М", "А", "О"],
+      ["Я", "Ф", "Ж", "У", "Р", "Н", "А", "Л"]
+    ],
+    explanation: "Задание выполнено!"
+  }
+]
+},
 
     languages: {
       title: "Факультет иностранных языков",
@@ -224,30 +236,92 @@
       ],
 
       tasks: [
-        {
-          type: "wordBuilder",
-          title: "Сила английских букв",
-          question: "Из букв слова TRIANGLE составь пять английских слов. Вводи по одному слову. Каждую букву можно использовать только столько раз, сколько она встречается в исходном слове.",
-          sourceWord: "TRIANGLE",
-          answers: ["TRAIN", "GIANT", "GREAT", "ANGLE", "ALERT"],
-          explanation: "Отличная работа! Ты умеешь находить новые слова из имеющегося буквенного набора."
-        },
-        {
-          type: "sentenceOrder",
-          title: "Собери предложение",
-          question: "Составь правильное английское предложение из перепутанных слов.",
-          words: ["yesterday", "library", "I", "the", "visited"],
-          answer: ["I", "visited", "the", "library", "yesterday"],
-          explanation: "Правильный порядок слов: I visited the library yesterday."
-        },
-        {
-          type: "textInput",
-          title: "Переводческая практика",
-          question: "Вставь пропущенную форму глагола:\n\nShe ___ a student.\n\nКакое английское слово пропущено?",
-          answer: ["is"],
-          explanation: "С местоимением she используется форма глагола to be — is."
-        }
-      ]
+  {
+    type: "sentenceOrder",
+    title: "Собери французскую пословицу",
+    question: "Составь предложение из перепутанных слов.",
+    words: ["guerre", "à", "la", "à", "guerre", "comme", "la"],
+    answer: ["à", "la", "guerre", "comme", "à", "la", "guerre"],
+    explanation: "Правильно: À la guerre comme à la guerre. Так говорят, когда нужно принимать условия, которые нельзя изменить."
+  },
+  {
+    type: "wordSearch",
+    title: "Семья",
+    question: "Найди шесть слов по теме «Семья»: два — по горизонтали, четыре — по вертикали. Надстрочные знаки указывать не нужно. Сначала нажми на первую букву слова, затем на последнюю.",
+    words: ["FRERE", "SOEUR", "FILS", "MERE", "PERE", "NIECE"],
+    grid: [
+      ["O", "M", "U", "P", "N", "L", "A", "N"],
+      ["N", "E", "T", "E", "I", "T", "O", "M"],
+      ["F", "R", "E", "R", "E", "D", "E", "H"],
+      ["I", "E", "S", "E", "C", "F", "S", "C"],
+      ["L", "F", "I", "L", "E", "R", "D", "U"],
+      ["S", "S", "OE", "U", "R", "A", "X", "Z"],
+      ["F", "T", "Y", "V", "F", "E", "S", "Q"],
+      ["O", "P", "D", "L", "A", "N", "N", "C"]
+    ],
+    explanation: "Найдены все слова: FRERE, SOEUR, FILS, MERE, PERE, NIECE."
+  },
+  {
+    type: "choice",
+    title: "Франция и французский язык",
+    question: "Выбери правильный ответ из предложенных.",
+    options: [
+      "Францию называют шестиугольником",
+      "Францию называют треугольником",
+      "Францию называют кругом"
+    ],
+    correct: 0,
+    explanation: "Францию часто называют шестиугольником (l'Hexagone) из-за формы её территории."
+  },
+  {
+    type: "choice",
+    title: "Французский город",
+    question: "Какой из этих городов находится во Франции?",
+    options: [
+      "Нагано",
+      "Неаполь",
+      "Ницца"
+    ],
+    correct: 2,
+    explanation: "Ницца — французский город на Лазурном берегу. Нагано — в Японии, Неаполь — в Италии."
+  },
+  {
+    type: "choice",
+    title: "Луара",
+    question: "Луара — это название…",
+    options: [
+      "реки",
+      "города",
+      "горы"
+    ],
+    correct: 0,
+    explanation: "Луара (la Loire) — самая длинная река Франции."
+  },
+  {
+    type: "choice",
+    title: "Герой французских комиксов",
+    question: "Как зовут героя французских комиксов?",
+    options: [
+      "Маомао",
+      "Астерикс",
+      "Халк"
+    ],
+    correct: 1,
+    explanation: "Астерикс — герой популярной французской серии комиксов про галла Астерикса и его друга Обеликса."
+  },
+  {
+    type: "choice",
+    title: "Предмет одежды",
+    question: "Что из этого является предметом одежды?",
+    options: [
+      "кашпо",
+      "кашне",
+      "каштан"
+    ],
+    correct: 1,
+    explanation: "Кашне (фр. cache-nez) — шарф, предмет одежды. Кашпо — декоративный сосуд для цветов, каштан — дерево и его плод."
+  }
+]
     }
   };
 
@@ -2572,173 +2646,128 @@ async function returnToHall() {
 }
 
   // ========================================
-  // 8. ЗАДАНИЯ
-  // ========================================
+// 8. СИСТЕМА РАЗНЫХ ТИПОВ ЗАДАНИЙ
+// ========================================
 
-    // ========================================
-  // 8. СИСТЕМА РАЗНЫХ ТИПОВ ЗАДАНИЙ
-  // ========================================
+let taskData = null;
+let foundWords = [];
+let firstCell = null;
+let builtWords = [];
+let selectedSentenceWords = [];
 
-  let taskData = null;
-  let foundWords = [];
-  let firstCell = null;
-  let builtWords = [];
-  let selectedSentenceWords = [];
+function openQuestion() {
+  const faculty = faculties[state.faculty];
+  taskData = faculty.tasks[state.challenge];
 
-  function openQuestion() {
-    const faculty = faculties[state.faculty];
-    taskData = faculty.tasks[state.challenge];
+  state.questionOpen = true;
 
-    state.questionOpen = true;
+  ui.questionFaculty.textContent = faculty.short.toUpperCase();
+  ui.questionTitle.textContent =
+    `Испытание ${state.challenge + 1}: ${taskData.title}`;
 
-    ui.questionFaculty.textContent = faculty.short.toUpperCase();
-    ui.questionTitle.textContent =
-      `Испытание ${state.challenge + 1}: ${taskData.title}`;
+  ui.questionText.textContent = taskData.question;
+  ui.feedback.textContent = "";
+  ui.answers.innerHTML = "";
 
-    ui.questionText.textContent = taskData.question;
-    ui.feedback.textContent = "";
-    ui.answers.innerHTML = "";
+  foundWords = [];
+  firstCell = null;
+  builtWords = [];
+  selectedSentenceWords = [];
 
-    foundWords = [];
-    firstCell = null;
-    builtWords = [];
-    selectedSentenceWords = [];
+  renderTask();
 
-    renderTask();
+  ui.questionWindow.hidden = false;
+}
 
-    ui.questionWindow.hidden = false;
+// Выбираем интерфейс в зависимости от типа задания
+function renderTask() {
+  switch (taskData.type) {
+    case "wordSearch":
+      renderWordSearch();
+      break;
+
+    case "textInput":
+    case "editText":
+      renderTextInput();
+      break;
+
+    case "wordBuilder":
+      renderWordBuilder();
+      break;
+
+    case "sentenceOrder":
+      renderSentenceOrder();
+      break;
+
+    case "choice":
+      renderChoice();
+      break;
+
+    case "match":
+      renderMatch();
+      break;
   }
+}
 
-  // Выбираем интерфейс в зависимости от типа задания
-  function renderTask() {
-    switch (taskData.type) {
-      case "wordSearch":
-        renderWordSearch();
-        break;
+// ----------------------------------------
+// ТИП 1. ПОИСК СЛОВ В БУКВЕННОМ КВАДРАТЕ
+// ----------------------------------------
 
-      case "textInput":
-      case "editText":
-        renderTextInput();
-        break;
+function renderWordSearch() {
+  const wrapper = document.createElement("div");
+  wrapper.className = "word-search";
 
-      case "wordBuilder":
-        renderWordBuilder();
-        break;
+  const list = document.createElement("div");
+  list.className = "word-list";
 
-      case "sentenceOrder":
-        renderSentenceOrder();
-        break;
+  list.innerHTML = "<strong>Найди слова:</strong>";
 
-      case "choice":
-        renderChoice();
-        break;
-    }
-  }
+  taskData.words.forEach(word => {
+    const item = document.createElement("span");
+    item.className = "word-target";
+    item.textContent = word;
+    item.dataset.word = word;
+    list.appendChild(item);
+  });
 
-  // ----------------------------------------
-  // ТИП 1. ПОИСК СЛОВ В БУКВЕННОМ КВАДРАТЕ
-  // ----------------------------------------
+  const grid = document.createElement("div");
+  grid.className = "letter-grid";
 
-  function renderWordSearch() {
-    const wrapper = document.createElement("div");
-    wrapper.className = "word-search";
+  taskData.grid.forEach((row, rowIndex) => {
+    row.forEach((letter, colIndex) => {
+      const cell = document.createElement("button");
 
-    const list = document.createElement("div");
-    list.className = "word-list";
+      cell.type = "button";
+      cell.className = "letter-cell";
+      cell.textContent = letter;
+      cell.dataset.row = rowIndex;
+      cell.dataset.col = colIndex;
 
-    list.innerHTML = "<strong>Найди слова:</strong>";
-
-    taskData.words.forEach(word => {
-      const item = document.createElement("span");
-      item.className = "word-target";
-      item.textContent = word;
-      item.dataset.word = word;
-      list.appendChild(item);
-    });
-
-    const grid = document.createElement("div");
-    grid.className = "letter-grid";
-
-    taskData.grid.forEach((row, rowIndex) => {
-      row.forEach((letter, colIndex) => {
-        const cell = document.createElement("button");
-
-        cell.type = "button";
-        cell.className = "letter-cell";
-        cell.textContent = letter;
-        cell.dataset.row = rowIndex;
-        cell.dataset.col = colIndex;
-
-        cell.addEventListener("click", () => {
-          selectWordCell(rowIndex, colIndex);
-        });
-
-        grid.appendChild(cell);
+      cell.addEventListener("click", () => {
+        selectWordCell(rowIndex, colIndex);
       });
+
+      grid.appendChild(cell);
     });
+  });
 
-    wrapper.appendChild(list);
-    wrapper.appendChild(grid);
+  wrapper.appendChild(list);
+  wrapper.appendChild(grid);
 
-    const counter = document.createElement("p");
-    counter.className = "task-counter";
-    counter.id = "wordCounter";
-    counter.textContent = `Найдено: 0 / ${taskData.words.length}`;
+  const counter = document.createElement("p");
+  counter.className = "task-counter";
+  counter.id = "wordCounter";
+  counter.textContent = `Найдено: 0 / ${taskData.words.length}`;
 
-    wrapper.appendChild(counter);
-    ui.answers.appendChild(wrapper);
-  }
+  wrapper.appendChild(counter);
+  ui.answers.appendChild(wrapper);
+}
 
-  function selectWordCell(row, col) {
-    if (state.answered) return;
+function selectWordCell(row, col) {
+  if (state.answered) return;
 
-    if (!firstCell) {
-      firstCell = { row, col };
-
-      document
-        .querySelectorAll(".letter-cell")
-        .forEach(cell => {
-          cell.classList.remove("selected");
-        });
-
-      getCell(row, col).classList.add("selected");
-      return;
-    }
-
-    const secondCell = { row, col };
-
-    const word = getWordBetween(firstCell, secondCell);
-
-    if (word) {
-      const reversed = word.split("").reverse().join("");
-
-      const found = taskData.words.find(target =>
-        target === word || target === reversed
-      );
-
-      if (found && !foundWords.includes(found)) {
-        foundWords.push(found);
-
-        markFoundWord(firstCell, secondCell);
-
-        const target = document.querySelector(
-          `.word-target[data-word="${found}"]`
-        );
-
-        if (target) target.classList.add("found");
-
-        ui.feedback.textContent = `Отлично! Найдено слово: ${found}`;
-      } else {
-        ui.feedback.textContent = found
-          ? "Это слово уже найдено."
-          : "Здесь нет нужного слова. Попробуй ещё раз.";
-      }
-    } else {
-      ui.feedback.textContent =
-        "Выбери прямую линию: горизонтально, вертикально или по диагонали.";
-    }
-
-    firstCell = null;
+  if (!firstCell) {
+    firstCell = { row, col };
 
     document
       .querySelectorAll(".letter-cell")
@@ -2746,427 +2775,575 @@ async function returnToHall() {
         cell.classList.remove("selected");
       });
 
-    const counter = document.getElementById("wordCounter");
-
-    if (counter) {
-      counter.textContent =
-        `Найдено: ${foundWords.length} / ${taskData.words.length}`;
-    }
-
-    if (foundWords.length === taskData.words.length) {
-      completeTask(taskData.explanation ||
-        "Ты нашёл все спрятанные слова!");
-    }
+    getCell(row, col).classList.add("selected");
+    return;
   }
 
-  function getCell(row, col) {
-    return document.querySelector(
-      `.letter-cell[data-row="${row}"][data-col="${col}"]`
+  const secondCell = { row, col };
+
+  const word = getWordBetween(firstCell, secondCell);
+
+  if (word) {
+    const reversed = word.split("").reverse().join("");
+
+    const found = taskData.words.find(target =>
+      target === word || target === reversed
     );
-  }
 
-  function getWordBetween(start, end) {
-    const rowDiff = end.row - start.row;
-    const colDiff = end.col - start.col;
+    if (found && !foundWords.includes(found)) {
+      foundWords.push(found);
 
-    const rowStep = Math.sign(rowDiff);
-    const colStep = Math.sign(colDiff);
+      markFoundWord(firstCell, secondCell);
 
-    if (
-      rowDiff !== 0 &&
-      colDiff !== 0 &&
-      Math.abs(rowDiff) !== Math.abs(colDiff)
-    ) {
-      return "";
-    }
+      const target = document.querySelector(
+        `.word-target[data-word="${found}"]`
+      );
 
-    let word = "";
-    let row = start.row;
-    let col = start.col;
+      if (target) target.classList.add("found");
 
-    while (true) {
-      word += taskData.grid[row][col];
-
-      if (row === end.row && col === end.col) break;
-
-      row += rowStep;
-      col += colStep;
-    }
-
-    return word;
-  }
-
-  function markFoundWord(start, end) {
-    const rowStep = Math.sign(end.row - start.row);
-    const colStep = Math.sign(end.col - start.col);
-
-    let row = start.row;
-    let col = start.col;
-
-    while (true) {
-      const cell = getCell(row, col);
-
-      if (cell) {
-        cell.classList.add("found-cell");
-        cell.disabled = true;
-      }
-
-      if (row === end.row && col === end.col) break;
-
-      row += rowStep;
-      col += colStep;
-    }
-  }
-
-  // ----------------------------------------
-  // ТИП 2. САМОСТОЯТЕЛЬНЫЙ ВВОД ОТВЕТА
-  // ----------------------------------------
-
-  function renderTextInput() {
-    const wrapper = document.createElement("div");
-    wrapper.className = "text-task";
-
-    const input = document.createElement("input");
-    input.type = "text";
-    input.className = "task-input";
-    input.placeholder = "Введи свой ответ...";
-
-    const button = document.createElement("button");
-    button.className = "task-submit";
-    button.textContent = "Проверить ответ";
-
-    button.addEventListener("click", () => {
-      checkTextAnswer(input.value);
-    });
-
-    input.addEventListener("keydown", event => {
-      if (event.key === "Enter") {
-        checkTextAnswer(input.value);
-      }
-    });
-
-    wrapper.appendChild(input);
-    wrapper.appendChild(button);
-
-    ui.answers.appendChild(wrapper);
-
-    input.focus();
-  }
-
-  function normalizeAnswer(value) {
-    return value
-      .toLowerCase()
-      .replace(/ё/g, "е")
-      .replace(/[.,!?;:«»"]/g, "")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-
-  function checkTextAnswer(value) {
-    const normalized = normalizeAnswer(value);
-
-    if (!normalized) {
-      ui.feedback.textContent = "Сначала введи ответ.";
-      return;
-    }
-
-    const accepted = taskData.answer.map(normalizeAnswer);
-
-    if (accepted.includes(normalized)) {
-      completeTask(taskData.explanation);
+      ui.feedback.textContent = `Отлично! Найдено слово: ${found}`;
     } else {
-      ui.feedback.textContent =
-        "Пока неверно. Попробуй ещё раз!";
+      ui.feedback.textContent = found
+        ? "Это слово уже найдено."
+        : "Здесь нет нужного слова. Попробуй ещё раз.";
     }
+  } else {
+    ui.feedback.textContent =
+      "Выбери прямую линию: горизонтально, вертикально или по диагонали.";
   }
 
-  // ----------------------------------------
-  // ТИП 3. СОСТАВЛЕНИЕ СЛОВ ИЗ БУКВ
-  // ----------------------------------------
+  firstCell = null;
 
-  function renderWordBuilder() {
-    const wrapper = document.createElement("div");
-    wrapper.className = "text-task";
+  document
+    .querySelectorAll(".letter-cell")
+    .forEach(cell => {
+      cell.classList.remove("selected");
+    });
 
-    const source = document.createElement("div");
-    source.className = "source-word";
-    source.textContent = taskData.sourceWord;
+  const counter = document.getElementById("wordCounter");
 
-    const counter = document.createElement("p");
-    counter.className = "task-counter";
-    counter.id = "builtCounter";
+  if (counter) {
+    counter.textContent =
+      `Найдено: ${foundWords.length} / ${taskData.words.length}`;
+  }
 
-    const input = document.createElement("input");
-    input.type = "text";
-    input.className = "task-input";
-    input.placeholder = "Введи английское слово...";
+  if (foundWords.length === taskData.words.length) {
+    completeTask(taskData.explanation ||
+      "Ты нашёл все спрятанные слова!");
+  }
+}
 
+function getCell(row, col) {
+  return document.querySelector(
+    `.letter-cell[data-row="${row}"][data-col="${col}"]`
+  );
+}
+
+function getWordBetween(start, end) {
+  const rowDiff = end.row - start.row;
+  const colDiff = end.col - start.col;
+
+  const rowStep = Math.sign(rowDiff);
+  const colStep = Math.sign(colDiff);
+
+  if (
+    rowDiff !== 0 &&
+    colDiff !== 0 &&
+    Math.abs(rowDiff) !== Math.abs(colDiff)
+  ) {
+    return "";
+  }
+
+  let word = "";
+  let row = start.row;
+  let col = start.col;
+
+  while (true) {
+    word += taskData.grid[row][col];
+
+    if (row === end.row && col === end.col) break;
+
+    row += rowStep;
+    col += colStep;
+  }
+
+  return word;
+}
+
+function markFoundWord(start, end) {
+  const rowStep = Math.sign(end.row - start.row);
+  const colStep = Math.sign(end.col - start.col);
+
+  let row = start.row;
+  let col = start.col;
+
+  while (true) {
+    const cell = getCell(row, col);
+
+    if (cell) {
+      cell.classList.add("found-cell");
+      cell.disabled = true;
+    }
+
+    if (row === end.row && col === end.col) break;
+
+    row += rowStep;
+    col += colStep;
+  }
+}
+
+// ----------------------------------------
+// ТИП 2. САМОСТОЯТЕЛЬНЫЙ ВВОД ОТВЕТА
+// ----------------------------------------
+
+function renderTextInput() {
+  const wrapper = document.createElement("div");
+  wrapper.className = "text-task";
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "task-input";
+  input.placeholder = "Введи свой ответ...";
+
+  const button = document.createElement("button");
+  button.className = "task-submit";
+  button.textContent = "Проверить ответ";
+
+  button.addEventListener("click", () => {
+    checkTextAnswer(input.value);
+  });
+
+  input.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      checkTextAnswer(input.value);
+    }
+  });
+
+  wrapper.appendChild(input);
+  wrapper.appendChild(button);
+
+  ui.answers.appendChild(wrapper);
+
+  input.focus();
+}
+
+function normalizeAnswer(value) {
+  return value
+    .toLowerCase()
+    .replace(/ё/g, "е")
+    .replace(/[.,!?;:«»"]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function checkTextAnswer(value) {
+  const normalized = normalizeAnswer(value);
+
+  if (!normalized) {
+    ui.feedback.textContent = "Сначала введи ответ.";
+    return;
+  }
+
+  const accepted = taskData.answer.map(normalizeAnswer);
+
+  if (accepted.includes(normalized)) {
+    completeTask(taskData.explanation);
+  } else {
+    ui.feedback.textContent =
+      "Пока неверно. Попробуй ещё раз!";
+  }
+}
+
+// ----------------------------------------
+// ТИП 3. СОСТАВЛЕНИЕ СЛОВ ИЗ БУКВ
+// ----------------------------------------
+
+function renderWordBuilder() {
+  const wrapper = document.createElement("div");
+  wrapper.className = "text-task";
+
+  const source = document.createElement("div");
+  source.className = "source-word";
+  source.textContent = taskData.sourceWord;
+
+  const counter = document.createElement("p");
+  counter.className = "task-counter";
+  counter.id = "builtCounter";
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "task-input";
+  input.placeholder = "Введи английское слово...";
+
+  const button = document.createElement("button");
+  button.className = "task-submit";
+  button.textContent = "Добавить слово";
+
+  const list = document.createElement("div");
+  list.className = "built-word-list";
+  list.id = "builtWordList";
+
+  button.addEventListener("click", () => {
+    addBuiltWord(input.value);
+  });
+
+  input.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      addBuiltWord(input.value);
+    }
+  });
+
+  wrapper.appendChild(source);
+  wrapper.appendChild(counter);
+  wrapper.appendChild(input);
+  wrapper.appendChild(button);
+  wrapper.appendChild(list);
+
+  ui.answers.appendChild(wrapper);
+
+  updateBuiltWords();
+  input.focus();
+}
+
+function canBuildWord(word) {
+  const sourceLetters = taskData.sourceWord
+    .toUpperCase()
+    .split("");
+
+  const usedLetters = word.split("");
+
+  for (const letter of usedLetters) {
+    const index = sourceLetters.indexOf(letter);
+
+    if (index === -1) return false;
+
+    sourceLetters.splice(index, 1);
+  }
+
+  return true;
+}
+
+function addBuiltWord(value) {
+  const word = value.trim().toUpperCase();
+
+  if (!word) {
+    ui.feedback.textContent = "Введи слово.";
+    return;
+  }
+
+  if (builtWords.includes(word)) {
+    ui.feedback.textContent = "Ты уже добавил это слово.";
+    return;
+  }
+
+  if (!canBuildWord(word)) {
+    ui.feedback.textContent =
+      "В этом слове используются буквы, которых нет в исходном слове, или одна из букв повторяется слишком часто.";
+    return;
+  }
+
+  if (!taskData.answers.includes(word)) {
+    ui.feedback.textContent =
+      "Такое слово не входит в список принимаемых ответов. Попробуй другое.";
+    return;
+  }
+
+  builtWords.push(word);
+
+  const input = ui.answers.querySelector(".task-input");
+  if (input) input.value = "";
+
+  ui.feedback.textContent = `Принято: ${word}`;
+
+  updateBuiltWords();
+
+  if (builtWords.length === taskData.answers.length) {
+    completeTask(taskData.explanation);
+  }
+}
+
+function updateBuiltWords() {
+  const counter = document.getElementById("builtCounter");
+  const list = document.getElementById("builtWordList");
+
+  if (counter) {
+    counter.textContent =
+      `Составлено: ${builtWords.length} / ${taskData.answers.length}`;
+  }
+
+  if (list) {
+    list.innerHTML = "";
+
+    builtWords.forEach(word => {
+      const item = document.createElement("span");
+      item.className = "built-word";
+      item.textContent = word;
+      list.appendChild(item);
+    });
+  }
+}
+
+// ----------------------------------------
+// ТИП 4. СБОРКА ПРЕДЛОЖЕНИЯ
+// ----------------------------------------
+
+function renderSentenceOrder() {
+  const wrapper = document.createElement("div");
+  wrapper.className = "text-task";
+
+  const selected = document.createElement("div");
+  selected.className = "sentence-selected";
+  selected.id = "sentenceSelected";
+  selected.textContent = "Нажимай на слова в правильном порядке";
+
+  const pool = document.createElement("div");
+  pool.className = "sentence-pool";
+
+  // Перемешиваем слова
+  const shuffled = [...taskData.words].sort(
+    () => Math.random() - 0.5
+  );
+
+  shuffled.forEach((word, index) => {
     const button = document.createElement("button");
-    button.className = "task-submit";
-    button.textContent = "Добавить слово";
 
-    const list = document.createElement("div");
-    list.className = "built-word-list";
-    list.id = "builtWordList";
+    button.className = "word-tile";
+    button.textContent = word;
+    button.dataset.index = index;
 
     button.addEventListener("click", () => {
-      addBuiltWord(input.value);
-    });
+      if (button.disabled || state.answered) return;
 
-    input.addEventListener("keydown", event => {
-      if (event.key === "Enter") {
-        addBuiltWord(input.value);
-      }
-    });
-
-    wrapper.appendChild(source);
-    wrapper.appendChild(counter);
-    wrapper.appendChild(input);
-    wrapper.appendChild(button);
-    wrapper.appendChild(list);
-
-    ui.answers.appendChild(wrapper);
-
-    updateBuiltWords();
-    input.focus();
-  }
-
-  function canBuildWord(word) {
-    const sourceLetters = taskData.sourceWord
-      .toUpperCase()
-      .split("");
-
-    const usedLetters = word.split("");
-
-    for (const letter of usedLetters) {
-      const index = sourceLetters.indexOf(letter);
-
-      if (index === -1) return false;
-
-      sourceLetters.splice(index, 1);
-    }
-
-    return true;
-  }
-
-  function addBuiltWord(value) {
-    const word = value.trim().toUpperCase();
-
-    if (!word) {
-      ui.feedback.textContent = "Введи слово.";
-      return;
-    }
-
-    if (builtWords.includes(word)) {
-      ui.feedback.textContent = "Ты уже добавил это слово.";
-      return;
-    }
-
-    if (!canBuildWord(word)) {
-      ui.feedback.textContent =
-        "В этом слове используются буквы, которых нет в исходном слове, или одна из букв повторяется слишком часто.";
-      return;
-    }
-
-    if (!taskData.answers.includes(word)) {
-      ui.feedback.textContent =
-        "Такое слово не входит в список принимаемых ответов. Попробуй другое.";
-      return;
-    }
-
-    builtWords.push(word);
-
-    const input = ui.answers.querySelector(".task-input");
-    if (input) input.value = "";
-
-    ui.feedback.textContent = `Принято: ${word}`;
-
-    updateBuiltWords();
-
-    if (builtWords.length === taskData.answers.length) {
-      completeTask(taskData.explanation);
-    }
-  }
-
-  function updateBuiltWords() {
-    const counter = document.getElementById("builtCounter");
-    const list = document.getElementById("builtWordList");
-
-    if (counter) {
-      counter.textContent =
-        `Составлено: ${builtWords.length} / ${taskData.answers.length}`;
-    }
-
-    if (list) {
-      list.innerHTML = "";
-
-      builtWords.forEach(word => {
-        const item = document.createElement("span");
-        item.className = "built-word";
-        item.textContent = word;
-        list.appendChild(item);
-      });
-    }
-  }
-
-  // ----------------------------------------
-  // ТИП 4. СБОРКА ПРЕДЛОЖЕНИЯ
-  // ----------------------------------------
-
-  function renderSentenceOrder() {
-    const wrapper = document.createElement("div");
-    wrapper.className = "text-task";
-
-    const selected = document.createElement("div");
-    selected.className = "sentence-selected";
-    selected.id = "sentenceSelected";
-    selected.textContent = "Нажимай на слова в правильном порядке";
-
-    const pool = document.createElement("div");
-    pool.className = "sentence-pool";
-
-    // Перемешиваем слова
-    const shuffled = [...taskData.words].sort(
-      () => Math.random() - 0.5
-    );
-
-    shuffled.forEach((word, index) => {
-      const button = document.createElement("button");
-
-      button.className = "word-tile";
-      button.textContent = word;
-      button.dataset.index = index;
-
-      button.addEventListener("click", () => {
-        if (button.disabled || state.answered) return;
-
-        selectedSentenceWords.push({
-          word,
-          button
-        });
-
-        button.disabled = true;
-        button.classList.add("used");
-
-        updateSentenceDisplay();
+      selectedSentenceWords.push({
+        word,
+        button
       });
 
-      pool.appendChild(button);
-    });
-
-    const reset = document.createElement("button");
-    reset.className = "task-submit secondary";
-    reset.textContent = "Начать заново";
-
-    reset.addEventListener("click", () => {
-      selectedSentenceWords = [];
-
-      pool.querySelectorAll("button").forEach(button => {
-        button.disabled = false;
-        button.classList.remove("used");
-      });
+      button.disabled = true;
+      button.classList.add("used");
 
       updateSentenceDisplay();
-      ui.feedback.textContent = "";
     });
 
-    const check = document.createElement("button");
-    check.className = "task-submit";
-    check.textContent = "Проверить предложение";
+    pool.appendChild(button);
+  });
 
-    check.addEventListener("click", checkSentence);
+  const reset = document.createElement("button");
+  reset.className = "task-submit secondary";
+  reset.textContent = "Начать заново";
 
-    wrapper.appendChild(selected);
-    wrapper.appendChild(pool);
-    wrapper.appendChild(reset);
-    wrapper.appendChild(check);
+  reset.addEventListener("click", () => {
+    selectedSentenceWords = [];
 
-    ui.answers.appendChild(wrapper);
+    pool.querySelectorAll("button").forEach(button => {
+      button.disabled = false;
+      button.classList.remove("used");
+    });
+
+    updateSentenceDisplay();
+    ui.feedback.textContent = "";
+  });
+
+  const check = document.createElement("button");
+  check.className = "task-submit";
+  check.textContent = "Проверить предложение";
+
+  check.addEventListener("click", checkSentence);
+
+  wrapper.appendChild(selected);
+  wrapper.appendChild(pool);
+  wrapper.appendChild(reset);
+  wrapper.appendChild(check);
+
+  ui.answers.appendChild(wrapper);
+}
+
+function updateSentenceDisplay() {
+  const display = document.getElementById("sentenceSelected");
+
+  if (!display) return;
+
+  display.textContent = selectedSentenceWords.length
+    ? selectedSentenceWords.map(item => item.word).join(" ")
+    : "Нажимай на слова в правильном порядке";
+}
+
+function checkSentence() {
+  const actual = selectedSentenceWords.map(item => item.word);
+  const expected = taskData.answer;
+
+  if (
+    actual.length === expected.length &&
+    actual.every((word, index) => word === expected[index])
+  ) {
+    completeTask(taskData.explanation);
+  } else {
+    ui.feedback.textContent =
+      "Порядок слов пока неправильный. Попробуй ещё раз.";
   }
+}
 
-  function updateSentenceDisplay() {
-    const display = document.getElementById("sentenceSelected");
+// ----------------------------------------
+// ТИП 5. ВЫБОР ОТВЕТА
+// ----------------------------------------
 
-    if (!display) return;
+function renderChoice() {
+  taskData.options.forEach((answer, index) => {
+    const button = document.createElement("button");
 
-    display.textContent = selectedSentenceWords.length
-      ? selectedSentenceWords.map(item => item.word).join(" ")
-      : "Нажимай на слова в правильном порядке";
-  }
+    button.className = "answer-button";
+    button.textContent = `${["А", "Б", "В", "Г"][index]}. ${answer}`;
 
-  function checkSentence() {
-    const actual = selectedSentenceWords.map(item => item.word);
-    const expected = taskData.answer;
+    button.addEventListener("click", () => {
+      if (index === taskData.correct) {
+        completeTask(taskData.explanation);
+      } else {
+        button.classList.add("wrong");
+        button.disabled = true;
 
-    if (
-      actual.length === expected.length &&
-      actual.every((word, index) => word === expected[index])
-    ) {
-      completeTask(taskData.explanation);
-    } else {
-      ui.feedback.textContent =
-        "Порядок слов пока неправильный. Попробуй ещё раз.";
-    }
-  }
+        ui.feedback.textContent =
+          "Не совсем! Подумай ещё и попробуй другой вариант.";
+      }
+    });
 
-  // ----------------------------------------
-  // ТИП 5. ВЫБОР ОТВЕТА
-  // ----------------------------------------
+    ui.answers.appendChild(button);
+  });
+}
 
-  function renderChoice() {
-    taskData.options.forEach((answer, index) => {
-      const button = document.createElement("button");
+// ----------------------------------------
+// ТИП 6. СООТНЕСЕНИЕ ТЕРМИН — ОПРЕДЕЛЕНИЕ
+// ----------------------------------------
 
-      button.className = "answer-button";
-      button.textContent = `${["А", "Б", "В"][index]}. ${answer}`;
+function renderMatch() {
+  const wrapper = document.createElement("div");
+  wrapper.className = "match-task";
 
-      button.addEventListener("click", () => {
-        if (index === taskData.correct) {
-          completeTask(taskData.explanation);
-        } else {
-          button.classList.add("wrong");
-          button.disabled = true;
+  const termsCol = document.createElement("div");
+  termsCol.className = "match-column";
 
-          ui.feedback.textContent =
-            "Не совсем! Подумай ещё и попробуй другой вариант.";
-        }
+  const defsCol = document.createElement("div");
+  defsCol.className = "match-column";
+
+  const pairs = taskData.pairs;
+
+  // Перемешиваем определения
+  const shuffledDefs = pairs
+    .map((pair, index) => ({ pair, index }))
+    .sort(() => Math.random() - 0.5);
+
+  let selectedTerm = null;
+  let matchedCount = 0;
+
+  pairs.forEach((pair, index) => {
+    const termButton = document.createElement("button");
+    termButton.type = "button";
+    termButton.className = "match-item match-term";
+    termButton.textContent = pair.term;
+    termButton.dataset.index = index;
+
+    termButton.addEventListener("click", () => {
+      if (state.answered) return;
+      if (termButton.classList.contains("matched")) return;
+
+      // Снимаем выделение с других терминов
+      termsCol.querySelectorAll(".match-term").forEach(btn => {
+        btn.classList.remove("selected");
       });
 
-      ui.answers.appendChild(button);
-    });
-  }
-
-  // ----------------------------------------
-  // ОБЩЕЕ ЗАВЕРШЕНИЕ ЗАДАНИЯ
-  // ----------------------------------------
-
-  function completeTask(message) {
-    if (state.answered) return;
-
-    state.answered = true;
-
-    ui.feedback.textContent =
-      "Верно! " + (message || "Испытание пройдено.");
-
-    updateInterface();
-
-    const nextButton = document.createElement("button");
-
-    nextButton.className = "answer-button correct";
-    nextButton.textContent = "Продолжить →";
-
-    nextButton.addEventListener("click", () => {
-      ui.questionWindow.hidden = true;
-      state.questionOpen = false;
+      selectedTerm = { index, button: termButton };
+      termButton.classList.add("selected");
+      ui.feedback.textContent =
+        `Выбран термин: ${pair.term}. Теперь выбери определение.`;
     });
 
-    ui.answers.appendChild(nextButton);
-  }
+    termsCol.appendChild(termButton);
+  });
 
-  function closeQuestion() {
+  shuffledDefs.forEach(({ pair, index }) => {
+    const defButton = document.createElement("button");
+    defButton.type = "button";
+    defButton.className = "match-item match-def";
+    defButton.textContent = pair.definition;
+    defButton.dataset.index = index;
+
+    defButton.addEventListener("click", () => {
+      if (state.answered) return;
+      if (defButton.classList.contains("matched")) return;
+
+      if (!selectedTerm) {
+        ui.feedback.textContent = "Сначала выбери термин слева.";
+        return;
+      }
+
+      if (selectedTerm.index === index) {
+        // Верно
+        selectedTerm.button.classList.remove("selected");
+        selectedTerm.button.classList.add("matched");
+        selectedTerm.button.disabled = true;
+
+        defButton.classList.add("matched");
+        defButton.disabled = true;
+
+        matchedCount++;
+        ui.feedback.textContent = `Верно: ${pair.term}.`;
+
+        selectedTerm = null;
+
+        if (matchedCount === pairs.length) {
+          completeTask(taskData.explanation);
+        }
+      } else {
+        // Неверно
+        defButton.classList.add("wrong");
+        setTimeout(() => defButton.classList.remove("wrong"), 800);
+
+        ui.feedback.textContent =
+          "Не совпадает. Попробуй другое определение.";
+
+        selectedTerm.button.classList.remove("selected");
+        selectedTerm = null;
+      }
+    });
+
+    defsCol.appendChild(defButton);
+  });
+
+  wrapper.appendChild(termsCol);
+  wrapper.appendChild(defsCol);
+  ui.answers.appendChild(wrapper);
+}
+
+// ----------------------------------------
+// ОБЩЕЕ ЗАВЕРШЕНИЕ ЗАДАНИЯ
+// ----------------------------------------
+
+function completeTask(message) {
+  if (state.answered) return;
+
+  state.answered = true;
+
+  ui.feedback.textContent =
+    "Верно! " + (message || "Испытание пройдено.");
+
+  updateInterface();
+
+  const nextButton = document.createElement("button");
+
+  nextButton.className = "answer-button correct";
+  nextButton.textContent = "Продолжить →";
+
+  nextButton.addEventListener("click", () => {
     ui.questionWindow.hidden = true;
     state.questionOpen = false;
-  }
+  });
+
+  ui.answers.appendChild(nextButton);
+}
+
+function closeQuestion() {
+  ui.questionWindow.hidden = true;
+  state.questionOpen = false;
+}
 
   // ========================================
   // 9. ЗАВЕРШЕНИЕ МАРШРУТА
