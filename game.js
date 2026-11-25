@@ -3788,30 +3788,33 @@ svg.addEventListener("pointerleave", () => {
   svg.style.cursor = "default";
 });
 
- // ========================================
+// ========================================
 // 14. КНОПКИ И ЗАПУСК
 // ========================================
 
 const startButton = $("startButton");
 
-startButton.addEventListener("touchstart", () => {
-  startButton.textContent = "Касание зарегистрировано";
-}, { passive: true });
-
 startButton.addEventListener("touchend", (event) => {
   event.preventDefault();
 
-  startButton.textContent = "Запускаю игру…";
   state.started = true;
-  ui.welcome.hidden = true;
+  ui.welcome.style.display = "none";
 }, { passive: false });
 
 startButton.addEventListener("click", () => {
   if (state.started) return;
 
   state.started = true;
-  ui.welcome.hidden = true;
+  ui.welcome.style.display = "none";
 });
+
+$("closeQuestion").addEventListener("click", closeQuestion);
+
+$("returnButton").addEventListener("click", returnToHall);
+
+if (ui.backButton) {
+  ui.backButton.addEventListener("click", returnToHall);
+}
 
 updateInterface();
 requestAnimationFrame(gameLoop);
