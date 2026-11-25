@@ -3370,14 +3370,28 @@ function closeQuestion() {
   // 9. ЗАВЕРШЕНИЕ МАРШРУТА
   // ========================================
 
-  function finishGame() {
+function finishGame() {
   const faculty = faculties[state.faculty];
 
   const finishIntro = ui.finishWindow.querySelector(".finish-intro");
+  const finishSite = ui.finishWindow.querySelector(".finish-site");
 
-  finishIntro.innerHTML =
-    `Поздравляем! Ты успешно прошёл(ла) маршрут
-    <strong>«${faculty.short}».</strong>`;
+  if (finishIntro) {
+    finishIntro.innerHTML = `
+      Поздравляем! Ты успешно прошёл(ла) маршрут
+      <strong>«${faculty.short}».</strong>
+    `;
+  }
+
+  if (finishSite) {
+    finishSite.href =
+      faculty.admissionUrl || "http://isu.ru/Abitur/pk2026/main/";
+
+    finishSite.innerHTML = `
+      Приёмная кампания · ${faculty.short}
+      <span>↗</span>
+    `;
+  }
 
   ui.finishWindow.hidden = false;
   state.started = false;
