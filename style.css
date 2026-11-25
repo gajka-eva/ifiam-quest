@@ -1281,3 +1281,15 @@ body:not(.in-hall) .topbar .location {
 .task-hover-glow.active {
   opacity: 0.8;
 }
+
+#welcome {
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+#welcome button {
+  position: relative;
+  z-index: 1001;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
