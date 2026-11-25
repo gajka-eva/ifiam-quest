@@ -1047,39 +1047,107 @@ footer {
   border-radius: 6px;
 }
 
+/* =================================
+   МОБИЛЬНЫЕ ОКНА ЗАДАНИЙ
+================================= */
+
 @media (max-width: 768px), (pointer: coarse) {
-  .overlay {
-    align-items: flex-start;
-    overflow-y: auto;
-    padding: 10px;
-    -webkit-overflow-scrolling: touch;
+
+  /* Окно задания поверх всего экрана */
+  .overlay:has(.question-card) {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+
+    width: 100%;
+    height: 100dvh;
+    padding: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #0e0d16e8;
+    backdrop-filter: blur(4px);
   }
 
+  /* Широкая карточка задания */
   .question-card {
     width: 100%;
-    max-height: calc(100% - 4px);
-    padding: 18px;
-    margin: auto 0;
+    max-width: none;
+
+    max-height: 94dvh;
+    height: auto;
+
+    margin: auto;
+    padding: 22px 18px;
+
     overflow-y: auto;
+    overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
+
+    border-radius: 14px;
   }
 
+  /* Заголовок */
   .question-card h2 {
-    font-size: 25px;
+    font-size: 27px;
+    line-height: 1.15;
   }
 
+  /* Описание */
   .question-card > p {
-    font-size: 12px;
+    font-size: 14px;
+    line-height: 1.7;
   }
 
+  /* Варианты ответа */
   .answers {
-    gap: 7px;
+    gap: 10px;
+    margin-top: 18px;
   }
 
   .answer-button {
-    padding: 11px;
+    padding: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Поля ввода */
+  .task-input {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  /* Кнопки заданий */
+  .task-submit {
+    min-height: 46px;
+    font-size: 14px;
+  }
+
+  /* Сетка букв */
+  .letter-grid {
+    width: 100%;
+    max-width: 420px;
+    gap: 4px;
+  }
+
+  .letter-cell {
+    font-size: 16px;
+  }
+
+  /* Сопоставление */
+  .match-task {
+    gap: 10px;
+  }
+
+  .match-item {
+    padding: 10px 7px;
     font-size: 13px;
   }
+
 }
 
 /* ========================================
