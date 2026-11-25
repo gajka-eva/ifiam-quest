@@ -129,7 +129,7 @@ ui.returnButton.addEventListener("click", () => {
   const faculties = {
     philology: {
       title: "Факультет теоретической и прикладной филологии",
-      short: "Теоретическая и прикладная филология",
+      short: "Филология",
       door: "ФИЛОЛОГИЯ",
       color: "#789c91",
 
@@ -175,7 +175,7 @@ ui.returnButton.addEventListener("click", () => {
 
     journalism: {
       title: "Высшая школа журналистики и медиапроизводства",
-      short: "Журналистика и медиапроизводство",
+      short: "Журналистика",
       door: "ЖУРНАЛИСТИКА",
       color: "#b28a62",
 
@@ -1228,7 +1228,7 @@ function drawNewsroom() {
 
   drawRoomTitle(
     "Аудитория № 1",
-    "Журналистика и медиапроизводство",
+    "Журналистика",
     "#8c3b32"
   );
 
@@ -1348,7 +1348,7 @@ function drawHeadlineRoom() {
 
   drawRoomTitle(
     "Аудитория № 2",
-    "Журналистика и медиапроизводство",
+    "Журналистика",
     "#426477"
   );
 
@@ -1500,7 +1500,7 @@ function drawMediaStudio() {
 
   drawRoomTitle(
     "Аудитория № 3",
-    "Журналистика и медиапроизводство",
+    "Журналистика",
     "#426477"
   );
 
