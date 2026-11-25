@@ -3786,22 +3786,22 @@ svg.addEventListener("pointerleave", () => {
   svg.style.cursor = "default";
 });
 
-  // ========================================
-  // 14. КНОПКИ И ЗАПУСК
-  // ========================================
+ // ========================================
+// 14. КНОПКИ И ЗАПУСК
+// ========================================
 
-  //$("startButton").addEventListener("click", () => {
-    //state.started = true;
-    //ui.welcome.hidden = true;
-  //});
+const startButton = $("startButton");
 
-  $("startButton").addEventListener("pointerup", (event) => {
+startButton.addEventListener("pointerup", (event) => {
   event.preventDefault();
+
+  if (state.started) return;
+
   state.started = true;
   ui.welcome.hidden = true;
 });
 
-  $("closeQuestion").addEventListener("click", closeQuestion);
+$("closeQuestion").addEventListener("click", closeQuestion);
 
 $("returnButton").addEventListener("click", returnToHall);
 
