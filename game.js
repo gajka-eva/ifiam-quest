@@ -3558,6 +3558,8 @@ if (
     requestAnimationFrame(gameLoop);
   }
 
+
+
   // ========================================
   // 13. УПРАВЛЕНИЕ КЛАВИАТУРОЙ
   // ========================================
@@ -3813,5 +3815,23 @@ startButton.addEventListener("click", () => {
 
 updateInterface();
 requestAnimationFrame(gameLoop);
+
+document.addEventListener("touchstart", (event) => {
+  const touch = event.touches[0];
+
+  const element = document.elementFromPoint(
+    touch.clientX,
+    touch.clientY
+  );
+
+  alert(
+    "Касание попало в элемент: " +
+    element.tagName +
+    " | ID: " +
+    element.id +
+    " | CLASS: " +
+    element.className
+  );
+}, { once: true, capture: true });
 
 })();
