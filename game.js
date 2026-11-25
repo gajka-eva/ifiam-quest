@@ -865,6 +865,20 @@ function drawTaskDesk() {
   roomRect(375, 368, 45, 17, "#9d5847");
   roomRect(425, 363, 50, 22, "#3f6375");
   roomRect(480, 370, 35, 15, "#c0a16d");
+
+    // Мягкая подсветка интерактивного стола
+  svgEl("ellipse", {
+    cx: 450,
+    cy: 415,
+    rx: 120,
+    ry: 95,
+    fill: "none",
+    stroke: "#f1d28e",
+    "stroke-width": 5,
+    opacity: 0,
+    class: "task-hover-glow",
+    "pointer-events": "none"
+  });
 }
 
 function drawExitDoor() {
@@ -3581,14 +3595,27 @@ if (
   });
 
 // ========================================
-// МОБИЛЬНОЕ УПРАВЛЕНИЕ: КАСАНИЕ ОБЪЕКТОВ
+// УПРАВЛЕНИЕ КЛИКАМИ: МЫШЬ И СЕНСОР
 // ========================================
 
-function handleMobileTap(event) {
-  // Только устройства с сенсорным управлением
-  if (!window.matchMedia("(pointer: coarse)").matches) {
-    return;
-  }
+function getSvgCoordinates(event) {
+  const point = svg.createSVGPoint();
+
+  point.x = event.clientX;
+  point.y = event.clientY;
+
+  const svgPoint = point.matrixTransform(
+    svg.getScreenCTM().inverse()
+  );
+
+  return {
+    x: svgPoint.x,
+    y: svgPoint.y
+  };
+}
+
+
+function handleScenePointer(event) {
 
   if (
     !state.started ||
@@ -3599,20 +3626,14 @@ function handleMobileTap(event) {
     return;
   }
 
-  // Получаем координаты касания в системе SVG
-  const point = svg.createSVGPoint();
-  point.x = event.clientX;
-  point.y = event.clientY;
+  const { x, y } = getSvgCoordinates(event);
 
-  const svgPoint = point.matrixTransform(
-    svg.getScreenCTM().inverse()
-  );
+  // ========================================
+  // ХОЛЛ — КЛИК ПО ДВЕРИ ФАКУЛЬТЕТА
+  // ========================================
 
-  const x = svgPoint.x;
-  const y = svgPoint.y;
-
-  // ХОЛЛ: касание двери факультета
   if (state.scene === "hall") {
+
     const door = doors.find(d =>
       x >= d.x &&
       x <= d.x + d.width &&
@@ -3627,9 +3648,14 @@ function handleMobileTap(event) {
     return;
   }
 
-  // АУДИТОРИЯ: касание стола с заданием
+
+  // ========================================
+  // АУДИТОРИИ
+  // ========================================
+
   if (state.scene === "classroom") {
 
+    // Клик по столу с заданием
     if (
       !state.answered &&
       Math.hypot(x - 450, y - 400) < 110
@@ -3638,7 +3664,7 @@ function handleMobileTap(event) {
       return;
     }
 
-    // Касание двери выхода
+    // Клик по двери в следующую комнату
     if (
       state.answered &&
       x >= 720 &&
@@ -3647,11 +3673,118 @@ function handleMobileTap(event) {
       y <= 395
     ) {
       goNextRoom();
+      return;
     }
   }
 }
 
-svg.addEventListener("pointerup", handleMobileTap);
+
+// ========================================
+// КУРСОР ПРИ НАВЕДЕНИИ
+// ========================================
+
+function handleSceneHover(event) {
+
+  // Убираем предыдущую подсветку
+  sceneLayer.querySelectorAll(".door.hovered")
+    .forEach(door => door.classList.remove("hovered"));
+
+  sceneLayer.querySelectorAll(".task-hover-glow.active")
+    .forEach(glow => glow.classList.remove("active"));
+
+  if (
+    event.pointerType !== "mouse" ||
+    !state.started ||
+    state.questionOpen ||
+    state.transitioning ||
+    !ui.finishWindow.hidden
+  ) {
+    svg.style.cursor = "default";
+    return;
+  }
+
+  const { x, y } = getSvgCoordinates(event);
+
+  let interactive = false;
+
+  // ========================================
+  // ХОЛЛ — ДВЕРИ
+  // ========================================
+
+  if (state.scene === "hall") {
+
+    const door = doors.find(d =>
+      x >= d.x &&
+      x <= d.x + d.width &&
+      y >= d.y &&
+      y <= d.y + d.height
+    );
+
+    if (door) {
+      interactive = true;
+
+      const doorElement = sceneLayer.querySelector(
+        `.door[data-door-id="faculty-${door.id}"]`
+      );
+
+      if (doorElement) {
+        doorElement.classList.add("hovered");
+      }
+    }
+  }
+
+  // ========================================
+  // АУДИТОРИЯ
+  // ========================================
+
+  if (state.scene === "classroom") {
+
+    // Стол с заданием
+    if (
+      !state.answered &&
+      Math.hypot(x - 450, y - 400) < 110
+    ) {
+      interactive = true;
+
+      const glow = sceneLayer.querySelector(".task-hover-glow");
+
+      if (glow) {
+        glow.classList.add("active");
+      }
+    }
+
+    // Дверь в следующую комнату
+    if (
+      state.answered &&
+      x >= 720 &&
+      x <= 800 &&
+      y >= 260 &&
+      y <= 395
+    ) {
+      interactive = true;
+
+      const exitDoor = sceneLayer.querySelector(
+        '.door[data-door-id="next-room"]'
+      );
+
+      if (exitDoor) {
+        exitDoor.classList.add("hovered");
+      }
+    }
+  }
+
+  svg.style.cursor = interactive
+    ? "pointer"
+    : "default";
+}
+
+
+// Обработчики мыши и сенсорного экрана
+svg.addEventListener("pointerup", handleScenePointer);
+svg.addEventListener("pointermove", handleSceneHover);
+svg.addEventListener("pointerleave", () => {
+  svg.style.cursor = "default";
+});
 
   // ========================================
   // 14. КНОПКИ И ЗАПУСК
