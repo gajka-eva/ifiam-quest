@@ -3814,7 +3814,6 @@ startButton.addEventListener("click", () => {
 });
 
 updateInterface();
-requestAnimationFrame(gameLoop);
 
 document.addEventListener("touchstart", (event) => {
   const touch = event.touches[0];
@@ -3833,5 +3832,8 @@ document.addEventListener("touchstart", (event) => {
     element.className
   );
 }, { once: true, capture: true });
+
+requestAnimationFrame(gameLoop);
+
 
 })();
