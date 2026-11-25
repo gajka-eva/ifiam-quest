@@ -1176,3 +1176,26 @@ body:not(.in-hall) .topbar .location {
   border-color: #e53935;
   background: #ffebee;
 }
+
+/* ===== СТАРТОВОЕ ОКНО НА МОБИЛЬНЫХ ===== */
+
+@media (max-width: 768px), (pointer: coarse) {
+  .overlay:has(.welcome-card) {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    min-height: 100dvh;
+    padding: 16px;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .welcome-card {
+    width: 100%;
+    min-height: 85dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 22px;
+  }
+}
