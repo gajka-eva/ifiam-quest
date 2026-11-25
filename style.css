@@ -1177,25 +1177,80 @@ body:not(.in-hall) .topbar .location {
   background: #ffebee;
 }
 
-/* ===== СТАРТОВОЕ ОКНО НА МОБИЛЬНЫХ ===== */
+/* ========================================
+   МОБИЛЬНАЯ СТАРТОВАЯ ЗАСТАВКА
+======================================== */
 
 @media (max-width: 768px), (pointer: coarse) {
+
+  /* Затемнение теперь на весь экран */
   .overlay:has(.welcome-card) {
     position: fixed;
     inset: 0;
     z-index: 2000;
-    min-height: 100dvh;
-    padding: 16px;
+
+    width: 100%;
+    height: 100dvh;
+    padding: 12px;
+
+    display: flex;
     align-items: stretch;
     justify-content: center;
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
+  /* Карточка почти во весь экран */
   .welcome-card {
     width: 100%;
-    min-height: 85dvh;
+    max-width: none;
+    height: calc(100dvh - 24px);
+    min-height: 0;
+
+    padding: 28px 24px;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 30px 22px;
+    justify-content: flex-start;
+    align-items: center;
+
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  /* Эмблема */
+  .welcome-card .crest {
+    font-size: 52px;
+    margin-bottom: 15px;
+  }
+
+  /* Заголовок */
+  .welcome-card h2 {
+    font-size: 32px;
+    line-height: 1.15;
+    margin: 18px 0;
+  }
+
+  /* Описание */
+  .welcome-card p:not(.eyebrow) {
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 420px;
+  }
+
+  /* Кнопка — ближе к низу */
+  .welcome-card button {
+    margin-top: auto;
+    margin-bottom: 18px;
+    padding: 15px 28px;
+    font-size: 15px;
+    width: min(100%, 320px);
+  }
+
+  /* Подпись под кнопкой */
+  .welcome-card small {
+    font-size: 11px;
+    line-height: 1.6;
   }
 }
