@@ -3790,10 +3790,16 @@ svg.addEventListener("pointerleave", () => {
   // 14. КНОПКИ И ЗАПУСК
   // ========================================
 
-  $("startButton").addEventListener("click", () => {
-    state.started = true;
-    ui.welcome.hidden = true;
-  });
+  //$("startButton").addEventListener("click", () => {
+    //state.started = true;
+    //ui.welcome.hidden = true;
+  //});
+
+  $("startButton").addEventListener("pointerup", (event) => {
+  event.preventDefault();
+  state.started = true;
+  ui.welcome.hidden = true;
+});
 
   $("closeQuestion").addEventListener("click", closeQuestion);
 
