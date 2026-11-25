@@ -3792,22 +3792,24 @@ svg.addEventListener("pointerleave", () => {
 
 const startButton = $("startButton");
 
-startButton.addEventListener("pointerup", (event) => {
+startButton.addEventListener("touchstart", () => {
+  startButton.textContent = "Касание зарегистрировано";
+}, { passive: true });
+
+startButton.addEventListener("touchend", (event) => {
   event.preventDefault();
 
+  startButton.textContent = "Запускаю игру…";
+  state.started = true;
+  ui.welcome.hidden = true;
+}, { passive: false });
+
+startButton.addEventListener("click", () => {
   if (state.started) return;
 
   state.started = true;
   ui.welcome.hidden = true;
 });
-
-$("closeQuestion").addEventListener("click", closeQuestion);
-
-$("returnButton").addEventListener("click", returnToHall);
-
-if (ui.backButton) {
-  ui.backButton.addEventListener("click", returnToHall);
-}
 
 updateInterface();
 requestAnimationFrame(gameLoop);
